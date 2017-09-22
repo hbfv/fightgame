@@ -1,2 +1,2 @@
-# fightgame
-Game I am creating using python 3.
+# Fight Game
+I am creating a simple game using Python 3.
