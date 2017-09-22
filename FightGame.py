@@ -1,4 +1,4 @@
-#V0.1
+#V0.15
 import random
 import tkinter
 
@@ -33,15 +33,14 @@ wrestler.pack()
 ###############################################
 
 
-#GAME WINDOW
 ###############################################
-#GAME INITIALISATION
+#GAME WINDOW
 def gameplay():
     window=tkinter.Tk()
     window.title("Fight Game - Playing")
     window.geometry("640x480")
     window.configure(background="#7F0404")
-###############################################
+
     global cclass
     if cclass=="boxer":
         pmodifier=1.5
