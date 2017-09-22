@@ -10,7 +10,7 @@ New:
 -Fighting is not 100% functional
 -Many indent errors after downloading
 
-# Known bugs:
+# Known bugs
 
 # Upcoming Features
 -Improved layout of menu's and buttons
