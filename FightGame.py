@@ -22,10 +22,13 @@ def wrestler():
 
 menu=tkinter.Tk()
 menu.title("Fight Game - Menu")
+menu.geometry("300x300")
 menu.configure(background="#7F0404")
-boxer=tkinter.Button(menu, text="Boxer", command=boxer)
-kickboxer=tkinter.Button(menu, text="Kick Boxer",command=kickboxer)
-wrestler=tkinter.Button(menu, text="Wrestler",command=wrestler)
+title=tkinter.Label(menu, text="Fight Game", font=("Courier", 30), pady=20,bg="#7F0404", fg="white")
+boxer=tkinter.Button(menu, text="Boxer", command=boxer, pady=10, padx=10)
+kickboxer=tkinter.Button(menu, text="Kick Boxer",command=kickboxer, pady=20, padx=10)
+wrestler=tkinter.Button(menu, text="Wrestler",command=wrestler, pady=20, padx=10)
+title.pack()
 boxer.pack()
 kickboxer.pack()
 wrestler.pack()
@@ -148,12 +151,12 @@ def gameplay():
 
 ###############################################
 #LOAD INTO GAME WINDOW
-    player.pack()
+    player.pack(pady=10, padx=20)
     healthl.pack()
-    punch.pack()
-    kick.pack()
-    grapple.pack()
-    enemy.pack()
+    punch.pack(pady=15)
+    kick.pack(pady=15)
+    grapple.pack(pady=15)
+    enemy.pack(pady=10)
     ehealthl.pack()
 
 ###############################################
