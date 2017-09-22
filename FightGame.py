@@ -1,3 +1,4 @@
+#V0.1
 import random
 import tkinter
 ###############################################
@@ -71,14 +72,23 @@ def gameplay():
         ehealth-=random.randint(10,20)*kmodifier
         print("Enemy health is now: "+str(rhealth))
         ehealthl.configure(text="Health: "+str(ehealth))
-            
+
+    def grapplep():
+	global ehealth
+	while chance<7:
+        	ehealth-=random.randint(2,7)*gmodifier
+                chance=random.randint(0,11)
+	        print("Enemy health is now: "+str(rhealth))
+		ehealthl.configure(text="Health: "+str(ehealth))
+		
+		
     player=tkinter.Label(window, text="Player")
     healthl=tkinter.Label(window, text="Health: 100")
-	enemy=tkinter.Label(window, text="Enemy")
-	ehealthl=tkinter.Label(window, text="Health: 100")
+    enemy=tkinter.Label(window, text="Enemy")
+    ehealthl=tkinter.Label(window, text="Health: 100")
     punch=tkinter.Button(window, text="Punch",command=punchp)
     kick=tkinter.Button(window, text="Kick", command =kickp)
-    grapple=tkinter.Button(window, text="Grapple")
+    grapple=tkinter.Button(window, text="Grapple", command=grapplep)
 
 ###############################################
 #LOAD INTO GAME WINDOW
