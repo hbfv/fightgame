@@ -5,7 +5,8 @@ I am creating a simple game using Python 3.
 New:
 -Game fully functional (AI fights back, winner can be determined)
 
-V0.1:
+# PREVIOUS VERSIONS
+###### V0.1:
 -Fighting is not 100% functional
 -Many indent errors after downloading
 
