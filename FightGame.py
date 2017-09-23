@@ -43,25 +43,22 @@ def gameplay():
     window.title("Fight Game - Playing")
     window.geometry("640x480")
     window.configure(background="#7F0404")
-
+    global health
     global cclass
     if cclass=="boxer":
         pmodifier=1.5
         kmodifier=0.5
         gmodifier=0.25
-        global health
         health=125
     elif cclass=="kickboxer":
         pmodifier=0.75
         kmodifier=1.5
         gmodifier=0.25
-        global health
         health=125
     elif cclass=="wrestler":
         pmodifier=0.5
         kmodifier=0.5
         gmodifier=2
-        global health
         health=175
 
     global ehealth
