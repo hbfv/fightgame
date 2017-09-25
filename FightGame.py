@@ -138,13 +138,11 @@ def gameplay():
         if pwin!=1:
             global ehealth
             chance=1
-            missch=random.randint(0,13)
-            if missch>=11:
-                while chance<7:
-                    ehealth-=random.randint(2,7)*gmodifier
-                    chance=random.randint(0,11)
-                    print("Enemy health is now: "+str(ehealth))
-                    ehealthl.configure(text="Health: "+str(ehealth))
+            while chance<7:
+                ehealth-=random.randint(2,7)*gmodifier
+                chance=random.randint(0,11)
+                print("Enemy health is now: "+str(ehealth))
+                ehealthl.configure(text="Health: "+str(ehealth))
             pwin()
             echance()
             ewin()
