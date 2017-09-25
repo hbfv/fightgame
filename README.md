@@ -3,9 +3,7 @@ I am creating a simple game using Python 3.
 
 # CURRENT VERSION - 0.2
 #### New:
--UI overhaul
--Added chance to miss an attack
--CPU health now scales depending on the class you choose
+-UI overhaul, Added chance to miss an attack, CPU health now scales depending on the class you choose
 
 # PREVIOUS VERSIONS
 #### V0.151
