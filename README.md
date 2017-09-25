@@ -18,9 +18,5 @@ I am creating a simple game using Python 3.
 -Fighting is not 100% functional
 -Many indent errors after downloading
 
-# KNOWN BUGS
-
 # UPCOMING FEATURES
-Background music (maybe)
-Sound effects
-Ability to restart game without closing down IDLE.
+Background music (maybe), Sound effects, Ability to restart game without closing down IDLE.
