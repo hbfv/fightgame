@@ -1,9 +1,8 @@
 # FIGHT GAME
-I am creating a simple game using Python 3.
+- I am creating a simple GUI based game using Python 3.
 
-# CURRENT VERSION - 0.21
-## Update History:
-https://github.com/hbfv/fightgame/commits/master/FightGame.py
+# Update History(Current Version is 0.211):
+- https://github.com/hbfv/fightgame/commits/master/FightGame.py
 
 # UPCOMING FEATURES
 Background music (maybe), Sound effects
