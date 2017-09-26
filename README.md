@@ -3,11 +3,16 @@ I am creating a simple game using Python 3.
 
 # CURRENT VERSION - 0.21
 #### New:
-- Game plays in full screen, Numbers have been rounded, Ability to restart the game without closing the IDLE shell
+- Game plays in full screen
+- Numbers have been rounded
+- Ability to restart the game without closing the IDLE shell
+- AI nerfed slightly
 
 # PREVIOUS VERSIONS
 #### V0.2
-- UI overhaul, Added chance to miss an attack, CPU health now scales depending on the class you choose
+- UI overhaul
+- Added chance to miss an attack
+- AI health now scales depending on the class you choose
 
 #### V0.151
 - Made the main menu more appealing to look at
