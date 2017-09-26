@@ -1,37 +1,40 @@
-#V0.2
+#V0.21
 import random
 import tkinter
 
 ###############################################
 #MAIN MENU WINDOW
+
 def boxer():
     global cclass
     cclass="boxer"
-    menu.destroy()
     gameplay()
 def kickboxer():
     global cclass
     cclass="kickboxer"
-    menu.destroy()
     gameplay()
 def wrestler():
     global cclass
     cclass="wrestler"
-    menu.destroy()
     gameplay()
 
-menu=tkinter.Tk()
-menu.title("Fight Game - Menu")
-menu.geometry("300x300")
-menu.configure(background="#7F0404", cursor="dot")
-title=tkinter.Label(menu, text="Fight Game", font=("Courier", 28, "bold"), pady=20,bg="#7F0404", fg="white")
-boxer=tkinter.Button(menu, text="Boxer", command=boxer, pady=20, width=100)
-kickboxer=tkinter.Button(menu, text="Kick Boxer",command=kickboxer, pady=20, width=100)
-wrestler=tkinter.Button(menu, text="Wrestler",command=wrestler, pady=20, width=100)
-title.pack()
-boxer.pack()
-kickboxer.pack()
-wrestler.pack()
+def menug():
+    global menu
+    menu=tkinter.Tk()
+    menu.title("Fight Game - Menu")
+    menu.geometry("300x300")
+    menu.configure(background="#7F0404", cursor="dot")
+    menu.attributes("-fullscreen",True)
+
+    title=tkinter.Label(menu, text="Fight Game", font=("Courier", 28, "bold"), pady=20,bg="#7F0404", fg="white")
+    boxert=tkinter.Button(menu, text="Boxer", command=boxer, pady=20, width=100)
+    kickboxert=tkinter.Button(menu, text="Kick Boxer",command=kickboxer, pady=20, width=100)
+    wrestlert=tkinter.Button(menu, text="Wrestler",command=wrestler, pady=20, width=100)
+
+    title.pack()
+    boxert.pack()
+    kickboxert.pack()
+    wrestlert.pack()
 
 ###############################################
 
@@ -39,10 +42,14 @@ wrestler.pack()
 ###############################################
 #GAME WINDOW
 def gameplay():
+    global menu
+    menu.destroy()
     window=tkinter.Tk()
     window.title("Fight Game - Playing")
     window.geometry("640x480")
     window.configure(background="#7F0404", cursor="dot")
+    window.attributes("-fullscreen",True)
+    global basehp
     global health
     global cclass
     if cclass=="boxer":
@@ -50,21 +57,26 @@ def gameplay():
         kmodifier=0.5
         gmodifier=0.25
         health=125
+        basehp=125
     elif cclass=="kickboxer":
         pmodifier=0.75
         kmodifier=1.5
         gmodifier=0.25
         health=125
+        basehp=125
     elif cclass=="wrestler":
         pmodifier=0.5
         kmodifier=0.5
         gmodifier=2
         health=175
+        basehp=175
 
     global ehealth
-    ehealth=health*1.25
+    ehealth=int(round(health*1.25))
     global emodifier
-    emodifier=1.4
+    emodifier=1.3
+    global ebasehp
+    ebasehp=ehealth
 
     global pwin
     pwin=0
@@ -72,6 +84,7 @@ def gameplay():
     def pwin():
         global ehealth
         if ehealth<=0:
+            ehealthl.configure(text="Health: 0"+"/"+str(ebasehp))
             print("Player has won")
             global pwin
             pwin=1
@@ -79,6 +92,7 @@ def gameplay():
     def ewin():
         global health
         if health<=0:
+            healthl.configure(text="Health: 0"+"/"+str(basehp))
             print("Enemy has won")
             global pwin
             pwin=1
@@ -92,14 +106,14 @@ def gameplay():
                 global ehealth
                 health-=random.randint(10,20)*emodifier
                 print("Player health is now: "+str(health))
-                healthl.configure(text="Health: "+str(health))
+                healthl.configure(text="Health: "+str(int(round(health)))+"/"+str(basehp))
             elif echance<=4:
                 chance=1
                 while chance<7:
-                    health-=random.randint(2,7)*emodifier
-                    chance=random.randint(0,11)
+                    health-=int(round(random.randint(2,7)*emodifier))
+                    chance=int(round(random.randint(0,11)))
                     print("Player health is now: "+str(health))
-                    healthl.configure(text="Health: "+str(health))
+                    healthl.configure(text="Health: "+str(int(round(health)))+"/"+str(basehp))
             elif echance>=11:
                 print("Enemy attack missed!")
 
@@ -113,7 +127,7 @@ def gameplay():
             else:
                 ehealth-=random.randint(10,20)*pmodifier
                 print("Enemy health is now: "+str(ehealth))
-                ehealthl.configure(text="Health: "+str(ehealth))
+                ehealthl.configure(text="Health: "+str(int(round(ehealth)))+"/"+str(ebasehp))
             pwin()
             echance()
             ewin()
@@ -129,7 +143,7 @@ def gameplay():
             else:    
                 ehealth-=random.randint(10,20)*kmodifier
                 print("Enemy health is now: "+str(ehealth))
-                ehealthl.configure(text="Health: "+str(ehealth))
+                ehealthl.configure(text="Health: "+str(int(round(ehealth)))+"/"+str(ebasehp))
             pwin()
             echance()
             ewin()
@@ -140,20 +154,25 @@ def gameplay():
             chance=1
             while chance<7:
                 ehealth-=random.randint(2,7)*gmodifier
-                chance=random.randint(0,11)
+                chance=int(round(random.randint(0,11)))
                 print("Enemy health is now: "+str(ehealth))
-                ehealthl.configure(text="Health: "+str(ehealth))
+                ehealthl.configure(text="Health: "+str(int(round(ehealth)))+"/"+str(ebasehp))
             pwin()
             echance()
             ewin()
+    def restart():
+        print("\n New game loaded \n")
+        window.destroy()
+        menug()
 		
     player=tkinter.Label(window, text="Player", font=("Courier", 24, "bold"))
-    healthl=tkinter.Label(window, text=("Health: "+str(health)), font=("Courier", 18))
+    healthl=tkinter.Label(window, text=("Health: "+str(health)+"/"+str(basehp)), font=("Courier", 18))
     enemy=tkinter.Label(window, text="Enemy", font=("Courier", 24, "bold"))
-    ehealthl=tkinter.Label(window, text=("Health: "+str(ehealth)), font=("Courier", 18))
+    ehealthl=tkinter.Label(window, text=("Health: "+str(ehealth)+"/"+str(ebasehp)), font=("Courier", 18))
     punch=tkinter.Button(window, text="Punch",command=punchp)
     kick=tkinter.Button(window, text="Kick", command =kickp)
     grapple=tkinter.Button(window, text="Grapple", command=grapplep)
+    restart=tkinter.Button(window, text="Restart", command=restart)
 
 ###############################################
 #LOAD INTO GAME WINDOW
@@ -164,6 +183,7 @@ def gameplay():
     grapple.pack(pady=5)
     enemy.pack(pady=10, padx=20, fill=tkinter.X)
     ehealthl.pack()
+    restart.pack(fill=tkinter.X, side=tkinter.BOTTOM)
 
 ###############################################
-    window.mainloop()
+menug()
