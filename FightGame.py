@@ -1,4 +1,3 @@
-#V0.21
 import random
 import tkinter
 
@@ -30,7 +29,9 @@ def menug():
     boxert=tkinter.Button(menu, text="Boxer", command=boxer, pady=20, width=100)
     kickboxert=tkinter.Button(menu, text="Kick Boxer",command=kickboxer, pady=20, width=100)
     wrestlert=tkinter.Button(menu, text="Wrestler",command=wrestler, pady=20, width=100)
+    mexit=tkinter.Button(menu, text="Exit", command=exit)
 
+    mexit.pack(fill=tkinter.X, side=tkinter.BOTTOM)
     title.pack()
     boxert.pack()
     kickboxert.pack()
@@ -161,7 +162,7 @@ def gameplay():
             echance()
             ewin()
     def restart():
-        print("\n New game loaded \n")
+        print("\nNew game loaded\n")
         window.destroy()
         menug()
 		
@@ -173,9 +174,11 @@ def gameplay():
     kick=tkinter.Button(window, text="Kick", command =kickp)
     grapple=tkinter.Button(window, text="Grapple", command=grapplep)
     restart=tkinter.Button(window, text="Restart", command=restart)
+    texit=tkinter.Button(window, text="Exit", command=exit)
 
 ###############################################
 #LOAD INTO GAME WINDOW
+    texit.pack(fill=tkinter.X, side=tkinter.BOTTOM)
     player.pack(pady=10, padx=20, fill=tkinter.X)
     healthl.pack()
     punch.pack(pady=5)
