@@ -107,7 +107,7 @@ def gameplay():
                     enemymove.configure(text="Enemy attack missed")
                 else:
                     global ehealth
-                    dmgdealt=random.randint(10,20)*emodifier
+                    dmgdealt=int(round(random.randint(10,20)*emodifier))
                     health-=dmgdealt
                     print("Player health is now: "+str(health))
                     healthl.configure(text="Health: "+str(int(round(health)))+"/"+str(basehp))
