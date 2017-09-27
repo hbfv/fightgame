@@ -22,6 +22,7 @@ def menug():
     menu.geometry("300x300")
     menu.configure(background="#7F0404", cursor="dot")
     menu.attributes("-fullscreen",True)
+    print("Game initialised.\n")
 
     title=tkinter.Label(menu, text="Fight Game", font=("Courier", 28, "bold"), pady=20,bg="#7F0404", fg="white")
     boxert=tkinter.Button(menu, text="Boxer", command=boxer, pady=20, width=100)
@@ -47,7 +48,6 @@ def gameplay():
     global basehp
     global health
     global cclass
-    global tdmg
     tdmg=0
     if cclass=="boxer":
         pmodifier=1.5
@@ -85,6 +85,7 @@ def gameplay():
             print("Player has won")
             global pwin
             pwin=1
+            winner.configure(text="Player has won")
 
     def ewin():
         global health
@@ -93,16 +94,18 @@ def gameplay():
             print("Enemy has won")
             global pwin
             pwin=1
+            winner.configure(text="Enemy has won")
 
     def echance():
         global pwin
         global tdmg
+        
         if pwin!=1:
             global health
             missche=random.randint(0,13)
             echance=random.randint(0,13)
             if echance>=5:
-                if missche>=10:
+                if missche>=11:
                     print("Enemy attack missed!")
                     enemymove.configure(text="Enemy attack missed")
                 else:
@@ -114,7 +117,7 @@ def gameplay():
                     enemymove.configure(text="Enemy used: Punch(Damage dealt: "+(str(dmgdealt))+")")
                     
             elif echance>=10:
-                if missche>=9:
+                if missche>=10:
                     print("Enemy attack missed!")
                     enemymove.configure(text="Enemy attack missed")
                 else:
@@ -135,7 +138,7 @@ def gameplay():
                     print("Player health is now: "+str(health))
                     healthl.configure(text="Health: "+str(int(round(health)))+"/"+str(basehp))
                 enemymove.configure(text="Enemy used: Grapple(Damage dealt: "+(str(tdmg))+")")           
-
+            tdmg=0
     def punchp():
         global pwin
         if pwin!=1:
@@ -144,9 +147,12 @@ def gameplay():
             if missch>=11:
                 print("Player attack missed!")
             else:
-                ehealth-=random.randint(9,21)*pmodifier
+                global dmgdealtp
+                dmgdealtp=int(round(random.randint(9,21)*pmodifier))
+                ehealth-=dmgdealtp
                 print("Enemy health is now: "+str(ehealth))
                 ehealthl.configure(text="Health: "+str(int(round(ehealth)))+"/"+str(ebasehp))
+                playerddealt.configure(text="Damage dealt to enemy: "+str(dmgdealtp))
             pwin()
             echance()
             ewin()
@@ -159,10 +165,13 @@ def gameplay():
             missch=random.randint(0,13)
             if missch>=10:
                 print("Player attack missed!")
-            else:    
-                ehealth-=random.randint(14,26)*kmodifier
+            else:
+                global dmgdealtp
+                dmgdealtp==int(round(random.randint(14,26)*kmodifier))
+                ehealth-=dmgdealtp
                 print("Enemy health is now: "+str(ehealth))
                 ehealthl.configure(text="Health: "+str(int(round(ehealth)))+"/"+str(ebasehp))
+                playerddealt.configure(text="Damage dealt to enemy: "+str(dmgdealtp))
             pwin()
             echance()
             ewin()
@@ -172,10 +181,14 @@ def gameplay():
             global ehealth
             chance=1
             while chance<7:
-                ehealth-=random.randint(2,7)*gmodifier
+                dmgdealtp=random.randint(2,7)*gmodifier
+                tdmgp+=dmgdealtp
+                ehealth-=dmgdealtp
                 chance=int(round(random.randint(0,11)))
                 print("Enemy health is now: "+str(ehealth))
                 ehealthl.configure(text="Health: "+str(int(round(ehealth)))+"/"+str(ebasehp))
+            playerddealt.configure(text="Damage dealt to enemy: "+str(tdmgp))
+            tdmgp=0                
             pwin()
             echance()
             ewin()
@@ -194,6 +207,8 @@ def gameplay():
     restart=tkinter.Button(window, text="Restart", command=restart)
     texit=tkinter.Button(window, text="Exit", command=exit)
     enemymove=tkinter.Label(window,text="", font=("Courier", 14), bg="#7F0404",fg="white")
+    playerddealt=tkinter.Label(window,text="", font=("Courier", 14), bg="#7F0404", fg="white")
+    winner=tkinter.Label(window, text="", font=("Courier", 14, "bold"), bg="#7F0404", fg="white")
 
     texit.pack(fill=tkinter.X, side=tkinter.BOTTOM)
     player.pack(pady=10, padx=20, fill=tkinter.X)
@@ -201,10 +216,12 @@ def gameplay():
     punch.pack(pady=5)
     kick.pack(pady=5)
     grapple.pack(pady=5)
+    playerddealt.pack()
     enemy.pack(pady=10, padx=20, fill=tkinter.X)
     ehealthl.pack()
     enemymove.pack()
     restart.pack(fill=tkinter.X, side=tkinter.BOTTOM)
+    winner.pack(side=tkinter.BOTTOM)
 
-#Initializes the game
+#Initialises the game
 menug()
