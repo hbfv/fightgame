@@ -48,7 +48,10 @@ def gameplay():
     global basehp
     global health
     global cclass
+    global tdmgp
+    global tdmg
     tdmg=0
+    tdmgp=0
     if cclass=="boxer":
         pmodifier=1.5
         kmodifier=0.5
@@ -129,6 +132,7 @@ def gameplay():
                     enemymove.configure(text="Enemy used: Kick(Damage dealt: "+(str(dmgdealt))+")")
             
             elif echance<=4:
+                global tdmg
                 chance=1
                 while chance<7:
                     dmgdealt=random.randint(2,7)*emodifier
@@ -179,6 +183,7 @@ def gameplay():
     def grapplep():
         if pwin!=1:
             global ehealth
+            global tdmgp
             chance=1
             while chance<7:
                 dmgdealtp=random.randint(2,7)*gmodifier
