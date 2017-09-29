@@ -2,6 +2,12 @@ import random
 import tkinter
 ###############################################
 #MAIN MENU WINDOW
+wts=open("settings.txt","r")
+global fs
+fs=int(wts.read())
+print(fs)
+wts.close()
+
 def boxer():
     global cclass
     cclass="boxer"
@@ -19,22 +25,55 @@ def menug():
     global menu
     menu=tkinter.Tk()
     menu.title("Fight Game - Menu")
-    menu.geometry("300x300")
+    menu.geometry("500x500")
     menu.configure(background="#7F0404", cursor="dot")
-    menu.attributes("-fullscreen",True)
+    
     print("Game initialised.\n")
+
+    def togglefullscreen():
+        global fs
+        if fs==1:
+            fs-=1
+            fsy.configure(text="Disabled")
+            menu.attributes("-fullscreen",False)
+            print("Fullscreen disabled")
+            wts=open("settings.txt","w")
+            wts.write("0")
+            wts.close()
+            
+        elif fs==0:
+            fs+=1
+            fsy.configure(text="Enabled")
+            menu.attributes("-fullscreen",True)
+            print("Fullscreen enabled")
+            wts=open("settings.txt","w")
+            wts.write("1")
+            wts.close()
+
 
     title=tkinter.Label(menu, text="Fight Game", font=("Courier", 28, "bold"), pady=20,bg="#7F0404", fg="white")
     boxert=tkinter.Button(menu, text="Boxer", command=boxer, pady=20, width=100)
     kickboxert=tkinter.Button(menu, text="Kick Boxer",command=kickboxer, pady=20, width=100)
     wrestlert=tkinter.Button(menu, text="Wrestler",command=wrestler, pady=20, width=100)
     mexit=tkinter.Button(menu, text="Exit", command=exit)
+    settings=tkinter.Label(menu, text="Settings", font=("Courier", 20, "bold"),bg="#7F0404", fg="white")
+    flscrn=tkinter.Label(menu, text="Fullscreen",font=("Courier", 14), bg="#7F0404", fg="white")
+    fsy=tkinter.Button(menu, text="", command=togglefullscreen)
+    if fs==0:
+        menu.attributes("-fullscreen",False)
+        fsy.configure(text="Disabled")
+    elif fs==1:
+        menu.attributes("-fullscreen",True)
+        fsy.configure(text="Enabled")
 
     mexit.pack(fill=tkinter.X, side=tkinter.BOTTOM)
     title.pack()
     boxert.pack()
     kickboxert.pack()
     wrestlert.pack()
+    settings.pack()
+    flscrn.pack()
+    fsy.pack()
 ###############################################
 #GAME WINDOW
 def gameplay():
@@ -44,7 +83,12 @@ def gameplay():
     window.title("Fight Game - Playing")
     window.geometry("640x480")
     window.configure(background="#7F0404", cursor="dot")
-    window.attributes("-fullscreen",True)
+    if fs==0:
+        window.attributes("-fullscreen",False)
+    elif fs==1:
+        window.attributes("-fullscreen",True)
+
+
     global basehp
     global health
     global cclass
